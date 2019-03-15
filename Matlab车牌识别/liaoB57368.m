@@ -1,0 +1,17 @@
+clc;
+clear;
+f = imread('辽B57368.jpg');
+f = imrotate(f,3,'nearest','crop');
+f = tofloat(f);
+imshow(f);title('原图');
+% f(:,:,3) = 1;
+% f(:,:,2) = 1;
+img_gray = rgb2gray(f);
+tf = tofloat(img_gray);
+w = [1,1,1;1,-8,1;1,1,1];
+img1 = tf - imfilter(tf,w,'replicate');
+figure;
+imshow(img1);title('锐化图');
+img = im2bw(img1);
+figure;
+imshow(img);title('二值图');
